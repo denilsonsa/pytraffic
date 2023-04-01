@@ -211,8 +211,8 @@ class Game:
         self.demo_timer=Timer.Timer(interval=1500)
         self.demo_timer.connect("tick",self.demo_step)
         tree=Gtk.Builder()
-        tree.add_from_file(np("libglade/AboutDialog.glade"))
-        self.about_dialog=tree.get_widget("AboutDialog")
+        tree.add_from_file(np("libglade/AboutDialog.ui"))
+        self.about_dialog=tree.get_object("AboutDialog")
         config_db=PropertyBag.PropertyBag(configfile=np(Misc.default_config_db))
         config_db.load(all=True)
         self.about_dialog.set_version("%s-%s" % (config_db["version"],
@@ -221,7 +221,7 @@ class Game:
                 "on_AboutDialog_close": self.about_dialog_close,
                 "on_AboutDialog_delete_event": self.about_dialog_close
                 }
-        tree.signal_autoconnect(events)
+        tree.connect_signals(events)
         self.callbacks_enabled=1
         self.newgame()
         self.window.show_all()

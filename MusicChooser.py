@@ -34,16 +34,16 @@ class MusicChooser:
     def __init__(self,theme_engine,music_server):
         settings=gtk.settings_get_default()
         tree=Gtk.Builder()
-        tree.add_from_file(np("libglade/MusicDialog.glade"))
-        self.dialog=tree.get_widget("ChooseMusicDialog")
-        self.chosen_location=tree.get_widget("chosen_location")
-        self.browse_button=tree.get_widget("browse_button")
-        self.advanced_button=tree.get_widget("advanced_button")
-        self.shuffle_button=tree.get_widget("shuffle_button")
-        self.recursive_button=tree.get_widget("recursive_button")
-        self.use_extensions_button=tree.get_widget("use_extensions_button")
-        self.browse_image=tree.get_widget("browse_image")
-        self.default_image=tree.get_widget("default_image")
+        tree.add_from_file(np("libglade/MusicDialog.ui"))
+        self.dialog=tree.get_object("ChooseMusicDialog")
+        self.chosen_location=tree.get_object("chosen_location")
+        self.browse_button=tree.get_object("browse_button")
+        self.advanced_button=tree.get_object("advanced_button")
+        self.shuffle_button=tree.get_object("shuffle_button")
+        self.recursive_button=tree.get_object("recursive_button")
+        self.use_extensions_button=tree.get_object("use_extensions_button")
+        self.browse_image=tree.get_object("browse_image")
+        self.default_image=tree.get_object("default_image")
         if not settings.get_property("gtk_button_images"):
             self.browse_image.destroy()
             self.default_image.destroy()
@@ -54,14 +54,15 @@ class MusicChooser:
               "on_ok_button_clicked"     : self.ok,
               "on_chosen_location_activate" : self.ok,
               "on_ChooseMusicDialog_delete_event" : self.cancel}
-        tree.signal_autoconnect(events)
+        tree.connect_signals(events)
         self.theme_engine=theme_engine
         self.music_server=music_server
         self.create_browser()
         self.myloop=gobject.MainLoop()
 
     def create_browser(self):
-        tree1=gtk.glade.XML(np("libglade/MusicBrowser.glade"))
+        tree1=Gtk.Builder()
+        tree1.add_from_file(np("libglade/MusicBrowser.ui"))
         events1={"on_music_browser_cancel_button_clicked" :
                  self.music_browser_cancel,
                  "on_music_browser_open_button_clicked" :
@@ -74,8 +75,8 @@ class MusicChooser:
                  self.music_browser_cancel,
                  "on_MusicBrowser_response":
                  self.music_browser_response}
-        tree1.signal_autoconnect(events1)
-        self.music_browser=tree1.get_widget("MusicBrowser")
+        tree1.connect_signals(events1)
+        self.music_browser=tree1.get_object("MusicBrowser")
 
 
     def run(self):

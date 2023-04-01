@@ -30,20 +30,20 @@ np=Misc.normalize_path
 class StatisticsDialog:
     def __init__(self,parent=None):
         tree=Gtk.Builder()
-        tree.add_from_file(np("libglade/StatisticsWindow.glade"))
-        self.window=tree.get_widget("StatisticsWindow")
+        tree.add_from_file(np("libglade/StatisticsWindow.ui"))
+        self.window=tree.get_object("StatisticsWindow")
         self.window.set_destroy_with_parent(True)
         # transient does not work well on nt
         if parent and os.name!='nt':
             self.window.set_transient_for(parent)
-        self.intermediate_solved=tree.get_widget("intermediate_solved")
-        self.intermediate_total=tree.get_widget("intermediate_total")
-        self.advanced_solved=tree.get_widget("advanced_solved")
-        self.advanced_total=tree.get_widget("advanced_total")
-        self.expert_solved=tree.get_widget("expert_solved")
-        self.expert_total=tree.get_widget("expert_total")
+        self.intermediate_solved=tree.get_object("intermediate_solved")
+        self.intermediate_total=tree.get_object("intermediate_total")
+        self.advanced_solved=tree.get_object("advanced_solved")
+        self.advanced_total=tree.get_object("advanced_total")
+        self.expert_solved=tree.get_object("expert_solved")
+        self.expert_total=tree.get_object("expert_total")
         events={"on_StatisticsWindow_delete_event" : self.hide}
-        tree.signal_autoconnect(events)
+        tree.connect_signals(events)
 
     def show(self):
         self.window.show_all()
