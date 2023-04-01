@@ -29,15 +29,15 @@ np=Misc.normalize_path
 
 
 def sanitize(file_name):
-    return string.replace(file_name,' ',r'\ ')
+    return file_name.replace(' ', r'\ ')
 
 def sanitize_url(url):
-    return string.replace(url,' ','%20')
+    return url.replace(' ', '%20')
 
 def which_python(program):
     if os.path.exists(program):
         return 1
-    path=string.split(os.environ['PATH'],":")
+    path=os.environ['PATH'].split(":")
     for dir in path:
         abs_path=os.path.join(dir,program)
         if os.path.exists(abs_path):

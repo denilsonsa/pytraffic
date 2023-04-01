@@ -98,7 +98,7 @@ def togridpoint (row,col):
 # works on cygwin 2.3 and 2.4
 
 def isCygwin():
-    return string.find(string.lower(sys.version),'cyg')!=-1
+    return 'cyg' in sys.version.lower()
 
 
 def walk(file_list,recursion_depth=None):

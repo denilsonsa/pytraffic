@@ -24,7 +24,7 @@ import os,sys,string
 
 def version_suffix():
     if os.name=='nt':
-        return string.replace(sys.version[:3],'.','')
+        return sys.version[:3].replace('.', '')
     else:
         return ''
 
