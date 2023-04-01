@@ -97,75 +97,80 @@ class Game:
             ("/Help/_About","<control>H",self.about,0,None)
             )
         accel_group=gtk.AccelGroup()
-        self.item_factory=item_factory=gtk.ItemFactory(gtk.MenuBar,
-                                                       "<main>",
-                                                       accel_group)
-        item_factory.create_items(self.menu_items)
-        self.window.add_accel_group(accel_group)
-        menubar=item_factory.get_widget("<main>")
-        vbox.pack_start(menubar, False, True, 0)
-        self.extract_sound_menu_items(item_factory)
-        self.extract_theme_menu_items(item_factory)
-        self.new_=item_factory.get_widget("/File/New")
-        self.restart_=item_factory.get_widget("/Edit/First")
-        self.undo_=item_factory.get_widget("/Edit/Undo")
-        self.redo_=item_factory.get_widget("/Edit/Redo")
-        self.end_=item_factory.get_widget("/Edit/End")
-        self.trivial_=item_factory.get_widget("/Settings/Difficulty/Trivial")
-        self.easy_=item_factory.get_widget("/Settings/Difficulty/Easy")
-        self.intermediate_=item_factory.get_widget(\
-                                       "/Settings/Difficulty/Intermediate")
-        self.advanced_=item_factory.get_widget("/Settings/Difficulty/Advanced")
-        self.expert_=item_factory.get_widget("/Settings/Difficulty/Expert")
-        self.animation_=item_factory.get_widget("/Settings/Animation")
-        self.warningsmode_=item_factory.get_widget("/Settings/Warnings")
-        self.sound_=item_factory.get_widget("/Settings/Sound")
-        self.music_=item_factory.get_widget("/Settings/Music")
-        self.choose_music_=item_factory.get_widget("/Settings/Choose Music")
-#        self.fancy_=item_factory.get_widget("/Settings/Theme/Fancy")
-#        self.minimal_=item_factory.get_widget("/Settings/Theme/Minimal")
-        self.demo_=item_factory.get_widget("/Help/Demo")
-        self.hint_=item_factory.get_widget("/Help/Hint")
-        self.readme_=item_factory.get_widget("/Help/Show readme")
+        # ItemFactory is gone in Gtk 3:
+        # https://www.reddit.com/r/perl/comments/10ac3pk/gtk2itemfactory_to_gtk3/
+        #
+        # self.item_factory=item_factory=gtk.ItemFactory(gtk.MenuBar,
+        #                                                "<main>",
+        #                                                accel_group)
+        # item_factory.create_items(self.menu_items)
+        # self.window.add_accel_group(accel_group)
+        # menubar=item_factory.get_widget("<main>")
+        # vbox.pack_start(menubar, False, True, 0)
+        # self.extract_sound_menu_items(item_factory)
+        # self.extract_theme_menu_items(item_factory)
+        # self.new_=item_factory.get_widget("/File/New")
+        # self.restart_=item_factory.get_widget("/Edit/First")
+        # self.undo_=item_factory.get_widget("/Edit/Undo")
+        # self.redo_=item_factory.get_widget("/Edit/Redo")
+        # self.end_=item_factory.get_widget("/Edit/End")
+        # self.trivial_=item_factory.get_widget("/Settings/Difficulty/Trivial")
+        # self.easy_=item_factory.get_widget("/Settings/Difficulty/Easy")
+        # self.intermediate_=item_factory.get_widget(\
+        #                                "/Settings/Difficulty/Intermediate")
+        # self.advanced_=item_factory.get_widget("/Settings/Difficulty/Advanced")
+        # self.expert_=item_factory.get_widget("/Settings/Difficulty/Expert")
+        # self.animation_=item_factory.get_widget("/Settings/Animation")
+        # self.warningsmode_=item_factory.get_widget("/Settings/Warnings")
+        # self.sound_=item_factory.get_widget("/Settings/Sound")
+        # self.music_=item_factory.get_widget("/Settings/Music")
+        # self.choose_music_=item_factory.get_widget("/Settings/Choose Music")
+        # #self.fancy_=item_factory.get_widget("/Settings/Theme/Fancy")
+        # #self.minimal_=item_factory.get_widget("/Settings/Theme/Minimal")
+        # self.demo_=item_factory.get_widget("/Help/Demo")
+        # self.hint_=item_factory.get_widget("/Help/Hint")
+        # self.readme_=item_factory.get_widget("/Help/Show readme")
 
 
         toolbar=gtk.Toolbar()
-        self.new_button=toolbar.insert_stock(gtk.STOCK_NEW,
-                                             "New level",
-                                             "",
-                                             self.new,
-                                             None,
-                                             -1)
-        self.restart_button=toolbar.insert_stock(gtk.STOCK_GOTO_FIRST,
-                                                 "Restart level",
-                                                 "",
-                                                 self.restart,
-                                                 None,
-                                                 -1)
-        self.undo_button=toolbar.insert_stock(gtk.STOCK_UNDO,
-                                              "Undo last move",
-                                              "",
-                                              self.undo,
-                                              None,
-                                              -1)
-        self.redo_button=toolbar.insert_stock(gtk.STOCK_REDO,
-                                              "Redo last move",
-                                              "",
-                                              self.redo,
-                                              None,
-                                              -1)
-        self.end_button=toolbar.insert_stock(gtk.STOCK_GOTO_LAST,
-                                             "Goto end of history",
-                                             "",
-                                             self.gotoend,
-                                             None,
-                                             -1)
-        self.hint_button=toolbar.insert_stock(gtk.STOCK_HELP,
-                                              "Ask for hint",
-                                              "",
-                                              self.hint,
-                                              None,
-                                              -1)
+        # Stock items are deprecated in GTK 3.10
+        # https://developer-old.gnome.org/gtk3/stable/gtk3-Stock-Items.html
+        # self.new_button=toolbar.insert_stock(gtk.STOCK_NEW,
+        #                                      "New level",
+        #                                      "",
+        #                                      self.new,
+        #                                      None,
+        #                                      -1)
+        # self.restart_button=toolbar.insert_stock(gtk.STOCK_GOTO_FIRST,
+        #                                          "Restart level",
+        #                                          "",
+        #                                          self.restart,
+        #                                          None,
+        #                                          -1)
+        # self.undo_button=toolbar.insert_stock(gtk.STOCK_UNDO,
+        #                                       "Undo last move",
+        #                                       "",
+        #                                       self.undo,
+        #                                       None,
+        #                                       -1)
+        # self.redo_button=toolbar.insert_stock(gtk.STOCK_REDO,
+        #                                       "Redo last move",
+        #                                       "",
+        #                                       self.redo,
+        #                                       None,
+        #                                       -1)
+        # self.end_button=toolbar.insert_stock(gtk.STOCK_GOTO_LAST,
+        #                                      "Goto end of history",
+        #                                      "",
+        #                                      self.gotoend,
+        #                                      None,
+        #                                      -1)
+        # self.hint_button=toolbar.insert_stock(gtk.STOCK_HELP,
+        #                                       "Ask for hint",
+        #                                       "",
+        #                                       self.hint,
+        #                                       None,
+        #                                       -1)
         vbox.pack_start(toolbar,False,False,0)
 
         statusbar=BottomBar.BottomBar(False,0)
