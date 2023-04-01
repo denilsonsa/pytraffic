@@ -219,6 +219,7 @@ class Arena(Canvas.Canvas):
         self.artwork=game.artwork
         self.carlist=[]
         self.background=None
+        self.background_id=None
         self.popup=gtk.Menu()
         self.popup_item=gtk.MenuItem("Order this car")
         self.popup.append(self.popup_item)
@@ -250,7 +251,7 @@ class Arena(Canvas.Canvas):
     def setupboard(self):
         self.artwork.reset()
         self.set_world_to_screen_transform(self.artwork.gettransform())
-        if self.background!=None:
+        if self.background is not None and self.background_id is not None:
             self.remove(self.background_id)
         self.background,self.background_basepoint=self.artwork.getbackground()
         bpx,bpy=self.background_basepoint

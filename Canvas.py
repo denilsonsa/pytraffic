@@ -40,15 +40,15 @@ class SmartRectangle(gtk.gdk.Rectangle):
         return self
 
     def copy(self):
-        return SmartRectangle(self[0],self[1],self[2],self[3])
+        return SmartRectangle(self.x,self.y,self.width,self.height)
 
     def union(self,rectangle):
         r=gtk.gdk.Rectangle.union(self.copy(),rectangle)
-        return SmartRectangle(r[0],r[1],r[2],r[3])
+        return SmartRectangle(r.x,r.y,r.width,r.height)
 
     def intersect(self,rectangle):
         r=gtk.gdk.Rectangle.intersect(self.copy(),rectangle)
-        return SmartRectangle(r[0],r[1],r[2],r[3])
+        return SmartRectangle(r.x,r.y,r.width,r.height)
 
     def union_translate(self,s,t):
         return self.union(self.copy(),self.translate(s,t))

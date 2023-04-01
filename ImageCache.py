@@ -40,6 +40,8 @@ class PixmapCache(Cache.Cache):
         Cache.Cache.__init__(self,self.__factory)
 
     def __factory(self,image):
+        # TODO: This doesn't work anymore.
+        # I have a feeling this entire thing has to be rewritten in cairo.
         return gtk.gdk.Pixbuf.render_pixmap_and_mask(image.get_pixbuf())
 
     def getpixmaps(self,image):
