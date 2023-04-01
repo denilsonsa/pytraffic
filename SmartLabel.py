@@ -28,22 +28,25 @@ class SmartLabel(gtk.EventBox):
         gtk.EventBox.__init__(self)
         self.label=gtk.Label(text)
         self.add(self.label)
-        style=self.label.rc_get_style()
-        self.default_bg=style.bg[gtk.STATE_NORMAL]
-        self.font_desc=style.font_desc
-        self.font_metrics=\
-             self.label.get_pango_context().get_metrics(self.font_desc)
-        self.approximate_char_width=\
-             self.font_metrics.get_approximate_char_width()
+        # rc_get_style() is gone.
+        # style=self.label.rc_get_style()
+        # self.default_bg=style.bg[gtk.STATE_NORMAL]
+        # self.font_desc=style.font_desc
+        # self.font_metrics=\
+        #      self.label.get_pango_context().get_metrics(self.font_desc)
+        # self.approximate_char_width=\
+        #      self.font_metrics.get_approximate_char_width()
 
     def modify_bg(self,color):
         gtk.EventBox.modify_bg(self,gtk.STATE_NORMAL,color)
 
     def reset_bg(self):
-        gtk.EventBox.modify_bg(self,gtk.STATE_NORMAL,self.default_bg)
+        # gtk.EventBox.modify_bg(self,gtk.STATE_NORMAL,self.default_bg)
+        pass
 
     def set_char_width(self,n):
-        self.set_size_request(n*self.approximate_char_width/pango.SCALE,-1)
+        # self.set_size_request(n*self.approximate_char_width/pango.SCALE,-1)
+        pass
 
     def set_anchor(self,s=''):
         if s=='e':
