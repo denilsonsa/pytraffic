@@ -28,7 +28,6 @@ import Hint
 import Arena,Board,Misc
 import History,BottomBar
 import LevelSelector
-import ConfigParser
 import Timer
 import GameState
 import CondMessageBox
@@ -350,7 +349,7 @@ class Game:
 		
 
     def enable_easteregg(self,*args):
-    	print "Enabling easter egg"
+    	print("Enabling easter egg")
     	self.gamestate.easteregg=1
 
     def show_statistics(self,*args):
@@ -484,14 +483,14 @@ type! Do you want to reset these levels?",
             self.default_all()
             self.propertybag.load()
             self.load_all()
-        except Exception,e:
+        except Exception as e:
             something_bad_happened=1
             last_error=str(e)
-            print ("Exception in newgame",last_error)
-        except Error,e:
+            print(("Exception in newgame",last_error))
+        except Error as e:
             something_bad_happened=1
             last_error=str(e)
-            print ("Error in newgame", last_error)
+            print(("Error in newgame", last_error))
         if something_bad_happened:
             Misc.save_configfile()
             self.default_all()

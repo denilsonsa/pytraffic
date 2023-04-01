@@ -23,7 +23,6 @@ import os
 import sys
 import os.path
 import Misc
-import urlparse
 import string
 
 np=Misc.normalize_path
@@ -63,7 +62,7 @@ def showhtml_nt(file):
     sanitized_url=sanitize_url("file://"+os.path.abspath(np(file)))
     url="file://"+os.path.abspath(np(file))
     if sys.version[:3]>='2.0':
-       print "Starting " + url
+       print("Starting " + url)
        os.startfile(url)
     else:
 	os.system("start "+sanitized_url)
