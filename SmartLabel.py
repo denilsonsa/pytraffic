@@ -20,7 +20,7 @@
 ##
 
 
-import gtk
+from gi import pygtkcompat; pygtkcompat.enable(); pygtkcompat.enable_gtk(version="3.0"); import gtk
 import pango
 
 class SmartLabel(gtk.EventBox):

@@ -19,7 +19,7 @@
 ## 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 ##
 
-import gtk
+from gi import pygtkcompat; pygtkcompat.enable(); pygtkcompat.enable_gtk(version="3.0"); import gtk
 import gobject
 import Timer,Chooser
 import Misc
