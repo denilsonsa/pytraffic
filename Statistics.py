@@ -22,14 +22,15 @@
 import os
 import Misc
 from gi import pygtkcompat; pygtkcompat.enable(); pygtkcompat.enable_gtk(version="3.0"); import gtk
-import gtk.glade
+from gi.repository import Gtk
 import sys
 
 np=Misc.normalize_path
 
 class StatisticsDialog:
     def __init__(self,parent=None):
-        tree=gtk.glade.XML(np("libglade/StatisticsWindow.glade"))
+        tree=Gtk.Builder()
+        tree.add_from_file(np("libglade/StatisticsWindow.glade"))
         self.window=tree.get_widget("StatisticsWindow")
         self.window.set_destroy_with_parent(True)
         # transient does not work well on nt

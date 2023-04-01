@@ -23,7 +23,7 @@
 import os
 import Misc
 from gi import pygtkcompat; pygtkcompat.enable(); pygtkcompat.enable_gtk(version="3.0"); import gtk
-import gtk.glade
+from gi.repository import Gtk
 import gobject
 import Chooser
 
@@ -33,7 +33,8 @@ class MusicChooser:
 
     def __init__(self,theme_engine,music_server):
         settings=gtk.settings_get_default()
-        tree=gtk.glade.XML(np("libglade/MusicDialog.glade"))
+        tree=Gtk.Builder()
+        tree.add_from_file(np("libglade/MusicDialog.glade"))
         self.dialog=tree.get_widget("ChooseMusicDialog")
         self.chosen_location=tree.get_widget("chosen_location")
         self.browse_button=tree.get_widget("browse_button")

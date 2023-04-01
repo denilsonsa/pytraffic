@@ -20,6 +20,7 @@
 ##
 
 from gi import pygtkcompat; pygtkcompat.enable(); pygtkcompat.enable_gtk(version="3.0"); import gtk
+from gi.repository import Gtk
 import pango
 import sys,os,string,copy
 import time
@@ -204,7 +205,8 @@ class Game:
         self.timer.set_running(1)
         self.demo_timer=Timer.Timer(interval=1500)
         self.demo_timer.connect("tick",self.demo_step)
-        tree=gtk.glade.XML(np("libglade/AboutDialog.glade"))
+        tree=Gtk.Builder()
+        tree.add_from_file(np("libglade/AboutDialog.glade"))
         self.about_dialog=tree.get_widget("AboutDialog")
         config_db=PropertyBag.PropertyBag(configfile=np(Misc.default_config_db))
         config_db.load(all=True)
