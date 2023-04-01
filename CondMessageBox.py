@@ -21,7 +21,7 @@
 
 import gtk
 
-    
+
 
 def askokcancel(message,window=None,disable=0):
     if not disable:

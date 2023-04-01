@@ -312,14 +312,3 @@ if py2exe_present:
                           "icon_resources":[(1,"icons/carNred.ico")]}]
 
 setup(**setup_kw)
-
-
-
-
-
-
-
-
-
-
-

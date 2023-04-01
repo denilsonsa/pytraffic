@@ -150,9 +150,6 @@ class Idler(gobject.GObject):
 gobject.type_register(Idler)
 
 
-
-
-
 if __name__=='__main__':
     def print_something(timer):
         global t
@@ -165,4 +162,3 @@ if __name__=='__main__':
     print(t.__grefcount__)
     del t
     gtk.main()
-

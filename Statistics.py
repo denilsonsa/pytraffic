@@ -32,9 +32,9 @@ class StatisticsDialog:
         tree=gtk.glade.XML(np("libglade/StatisticsWindow.glade"))
         self.window=tree.get_widget("StatisticsWindow")
         self.window.set_destroy_with_parent(True)
-	# transient does not work well on nt
+        # transient does not work well on nt
         if parent and os.name!='nt':
-	        self.window.set_transient_for(parent)
+            self.window.set_transient_for(parent)
         self.intermediate_solved=tree.get_widget("intermediate_solved")
         self.intermediate_total=tree.get_widget("intermediate_total")
         self.advanced_solved=tree.get_widget("advanced_solved")
@@ -43,18 +43,18 @@ class StatisticsDialog:
         self.expert_total=tree.get_widget("expert_total")
         events={"on_StatisticsWindow_delete_event" : self.hide}
         tree.signal_autoconnect(events)
-        
+
     def show(self):
         self.window.show_all()
         self._visible=1
 
     def hide(self,*args):
-	self.window.hide_all()
+        self.window.hide_all()
 # at one point this seemed necessary...don't remember why...
 #        self.window.unrealize()
         self._visible=0
-	return True
-        
+        return True
+
     def save_bag(self,propertybag):
         propertybag['statistics']=self._visible
 
@@ -82,5 +82,3 @@ class StatisticsDialog:
         self.expert_solved.set_text(
             str(statistics['Expert']['Solved']))
         self.expert_total.set_text(str(statistics['Expert']['Total']))
-
-        
